@@ -3,7 +3,7 @@
 
 using namespace Infrastructure::cardputer;
 
-Device::Device() : DeviceBase()
+Device::Device() : DeviceBase(new Infrastruture::cardputer::ButtonInterface())
 {
 }
 
@@ -14,11 +14,11 @@ String Device::getName()
 
 void Device::begin()
 {
-    Infrastructure::DeviceBase::begin();
+    Entities::DeviceBase::begin();
 }
 
 void Device::loop()
 {
-    Infrastructure::DeviceBase::loop();
+    Entities::DeviceBase::loop();
 }
 #endif
