@@ -14,7 +14,6 @@ void ButtonInterface::begin()
 
 void ButtonInterface::loop()
 {
-    // this->_buttonNext.loop();
     this->_buttonSelect.loop();
 }
 
