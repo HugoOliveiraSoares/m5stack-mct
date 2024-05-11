@@ -3,8 +3,7 @@
 
 using namespace Infrastructure::cplus2;
 
-Device::Device() : DeviceBase()
-
+Device::Device() : DeviceBase(new Infrastructure::cplus2::ButtonInterface())
 {
 }
 
@@ -15,11 +14,11 @@ String Device::getName()
 
 void Device::begin()
 {
-    Infrastructure::DeviceBase::begin();
+    Entities::DeviceBase::begin();
 }
 
 void Device::loop()
 {
-    Infrastructure::DeviceBase::loop();
+    Entities::DeviceBase::loop();
 }
 #endif
