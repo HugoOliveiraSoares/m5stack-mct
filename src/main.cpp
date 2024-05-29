@@ -14,7 +14,7 @@ using namespace Entities;
 std::shared_ptr<TFT_eSPI> display;
 
 DeviceBase *dev;
-Interface::ScreenManager screenManager;
+// Interface::ScreenManager screenManager;
 Interface::Menu mainMenu;
 ButtonInterfaceBase *buttonI;
 
@@ -27,7 +27,7 @@ void setup()
     buttonI = dev->getButton();
 
     mainMenu = Interface::Menu(dev->getDisplay(), dev->getButton());
-    screenManager = Interface::ScreenManager(dev->getDisplay());
+    Interface::ScreenManager::init(dev->getDisplay());
 
     Interface::MenuItem readMenuItem("readSubMenu", "Read Tag");
     Interface::MenuItem writeMenuItem("writeSubMenu", "Write Tag");
@@ -38,7 +38,7 @@ void setup()
 
     writeMenuItem.setOnClick([]() {
         auto write = new Interface::WriteScreen(display, buttonI);
-        screenManager.setCurrentScreen(write);
+        Interface::ScreenManager::setCurrentScreen(write);
         write->start();
     });
 
@@ -47,7 +47,7 @@ void setup()
     mainMenu.addItem(emulateMenuItem);
     mainMenu.addItem(importMenuItem);
 
-    screenManager.setCurrentScreen(&mainMenu, false);
+    Interface::ScreenManager::setCurrentScreen(&mainMenu, false);
 }
 
 void loop()
@@ -58,18 +58,18 @@ void loop()
     if (buttonI->isClickNext())
     {
         Serial.println("next");
-        screenManager.getCurrentScreen()->nextButtonPressed();
+        Interface::ScreenManager::getCurrentScreen()->nextButtonPressed();
     }
 
     if (buttonI->isClickPrevious())
     {
         Serial.println("previous");
-        screenManager.getCurrentScreen()->previousButtonPressed();
+        Interface::ScreenManager::getCurrentScreen()->previousButtonPressed();
     }
 
     if (buttonI->isClickSelect())
     {
         Serial.println("select");
-        screenManager.getCurrentScreen()->selectButtonPressed();
+        Interface::ScreenManager::getCurrentScreen()->selectButtonPressed();
     }
 }

@@ -2,13 +2,12 @@
 
 using namespace Interface;
 
-ScreenManager::ScreenManager()
-{
-}
+std::shared_ptr<TFT_eSPI> ScreenManager::_display = nullptr;
+Screen *ScreenManager::_currentScreen = nullptr;
 
-ScreenManager::ScreenManager(std::shared_ptr<TFT_eSPI> display)
+void ScreenManager::init(std::shared_ptr<TFT_eSPI> display)
 {
-    this->_display = display;
+    _display = display;
 }
 
 void ScreenManager::setCurrentScreen(Screen *newScreen, bool setPrevious)
@@ -18,33 +17,33 @@ void ScreenManager::setCurrentScreen(Screen *newScreen, bool setPrevious)
         Serial.println("ERROR: newScreen is null");
 
     if (setPrevious)
-        newScreen->setPreviousScreen(this->_currentScreen);
+        newScreen->setPreviousScreen(_currentScreen);
 
-    this->_currentScreen = newScreen;
-    this->render();
+    _currentScreen = newScreen;
+    render();
 }
 
 void ScreenManager::setToPreviousScreen()
 {
-    auto previousScreen = this->_currentScreen->getPreviousScreen();
+    auto previousScreen = _currentScreen->getPreviousScreen();
     if (previousScreen != nullptr)
     {
-        // auto screenToDelete = this->_currentScreen;
-        // this->_currentScreen = nullptr;
+        // auto screenToDelete = _currentScreen;
+        // _currentScreen = nullptr;
         // delete screenToDelete;
 
-        this->setCurrentScreen(previousScreen, false);
+        setCurrentScreen(previousScreen, false);
     }
 }
 
 Screen *ScreenManager::getCurrentScreen()
 {
-    return this->_currentScreen;
+    return _currentScreen;
 }
 
 void ScreenManager::render()
 {
-    this->_display->fillScreen(TFT_BLACK);
+    _display->fillScreen(TFT_BLACK);
 
-    this->_currentScreen->render();
+    _currentScreen->render();
 }

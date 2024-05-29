@@ -1,4 +1,5 @@
 #include "WriteScreen.h"
+#include "ScreenManager.h"
 
 using namespace Interface;
 
@@ -65,6 +66,8 @@ void WriteScreen::nextButtonPressed()
 
 void WriteScreen::previousButtonPressed()
 {
+    this->stop();
+    Interface::ScreenManager::setToPreviousScreen();
 }
 void WriteScreen::selectButtonPressed()
 {

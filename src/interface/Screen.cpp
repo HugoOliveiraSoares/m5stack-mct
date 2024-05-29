@@ -28,6 +28,7 @@ void Screen::nextButtonPressed()
 
 void Screen::previousButtonPressed()
 {
+    Interface::ScreenManager::setToPreviousScreen();
 }
 
 void Screen::selectButtonPressed()
