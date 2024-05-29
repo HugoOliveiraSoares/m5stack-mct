@@ -59,9 +59,6 @@ void Menu::selectItem()
     Serial.printf("selectItem: %s \t isDefinedOnClick: %d \n", this->_items[cursor].getText(),
                   this->_items[cursor].isDefinedOnClick());
 
-    Serial.print(" Menu: keysState ");
-    Serial.println(this->_button->isPressed());
-
     this->_items[cursor].click();
 }
 

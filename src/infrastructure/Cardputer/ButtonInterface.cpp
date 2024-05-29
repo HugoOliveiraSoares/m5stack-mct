@@ -9,22 +9,31 @@ ButtonInterface::ButtonInterface() : ButtonInterfaceBase()
 
 void ButtonInterface::begin()
 {
-    this->_buttonSelect.setDebounceTime(DEBOUNCE_MS);
+    // this->_buttonSelect.setDebounceTime(DEBOUNCE_MS);
+    this->_keyboard.begin();
 }
 
 void ButtonInterface::loop()
 {
-    this->_buttonSelect.loop();
+    this->_keyboard.updateKeyList();
+    this->_keyboard.updateKeysState();
+
+    // this->_buttonSelect.loop();
 }
 
-bool ButtonInterface::isPressed()
+bool ButtonInterface::isClickNext()
 {
-    return this->_buttonSelect.isPressed();
+    return this->_keyboard.isKeyPressed('.');
 }
 
-bool ButtonInterface::isReleased()
+bool ButtonInterface::isClickPrevious()
 {
-    return this->_buttonSelect.isReleased();
+    return this->_keyboard.isKeyPressed(';');
+}
+
+bool ButtonInterface::isClickSelect()
+{
+    return this->_keyboard.isKeyPressed(KEY_ENTER);
 }
 
 #endif

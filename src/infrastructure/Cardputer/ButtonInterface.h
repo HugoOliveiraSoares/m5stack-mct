@@ -17,11 +17,13 @@ class ButtonInterface : public ButtonInterfaceBase
     ButtonInterface();
     void begin();
     void loop();
-    bool isPressed();
-    bool isReleased();
+    bool isClickNext();
+    bool isClickPrevious();
+    bool isClickSelect();
 
   private:
     ezButton _buttonSelect = ezButton(BUTTON_SELECT_PIN);
+    Keyboard_Class _keyboard = Keyboard_Class();
 };
 } // namespace Infrastruture::cardputer
 #endif

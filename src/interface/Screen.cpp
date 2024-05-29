@@ -1,4 +1,5 @@
 #include "Screen.h"
+#include "ScreenManager.h"
 
 using namespace Interface;
 

@@ -11,15 +11,19 @@ class WriteScreen : public Screen
 {
   public:
     WriteScreen();
-    WriteScreen(ButtonInterfaceBase *button);
+    WriteScreen(std::shared_ptr<TFT_eSPI> display, ButtonInterfaceBase *button);
     void start();
     void stop();
     void run();
     void render();
+    void nextButtonPressed();
+    void previousButtonPressed();
+    void selectButtonPressed();
+    void backButtonPressed();
 
   private:
     ButtonInterfaceBase *_button;
-    bool _isRunning;
+    bool _isRunning = false;
     bool _stopping = false;
     int clicado = 0;
 };

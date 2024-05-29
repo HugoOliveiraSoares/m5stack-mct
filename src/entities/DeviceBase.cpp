@@ -37,6 +37,7 @@ void DeviceBase::begin()
 void DeviceBase::loop()
 {
     this->_button->loop();
+    delay(100);
 }
 
 DeviceBase *DeviceBase::getInstance()

@@ -2,9 +2,10 @@
 
 using namespace Interface;
 
-WriteScreen::WriteScreen(ButtonInterfaceBase *button)
+WriteScreen::WriteScreen(std::shared_ptr<TFT_eSPI> display, ButtonInterfaceBase *button)
 {
     this->_button = button;
+    this->_display = display;
 }
 
 void WriteScreen::stop()
@@ -25,11 +26,7 @@ void WriteScreen::run()
 
     while (true)
     {
-        if (this->_button->isPressed())
-        {
-            this->clicado++;
-            this->render();
-        }
+        this->render();
 
         if (this->_stopping)
             break;
@@ -43,7 +40,6 @@ void WriteScreen::run()
 
 void WriteScreen::start()
 {
-
     if (this->_isRunning)
         return;
 
@@ -59,6 +55,22 @@ void WriteScreen::start()
 void WriteScreen::render()
 {
     this->_display->fillScreen(TFT_BLACK);
-    this->_display->setCursor(this->_display->width() / 2, this->_display->height() / 2);
+    this->_display->setCursor(10, this->_display->height() / 2);
     this->_display->printf("W was pressed %d times\n", this->clicado);
+}
+
+void WriteScreen::nextButtonPressed()
+{
+}
+
+void WriteScreen::previousButtonPressed()
+{
+}
+void WriteScreen::selectButtonPressed()
+{
+    this->clicado++;
+}
+void WriteScreen::backButtonPressed()
+{
+    this->stop();
 }
