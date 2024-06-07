@@ -1,6 +1,6 @@
 #pragma once
 
-#define DEBOUNCE_MS 10
+#define DEBOUNCE_MS 50
 
 namespace Entities
 {

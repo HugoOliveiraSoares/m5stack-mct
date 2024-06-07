@@ -22,8 +22,8 @@ class ButtonInterface : public ButtonInterfaceBase
     bool isClickSelect();
 
   private:
-    ezButton _buttonSelect = ezButton(BUTTON_SELECT_PIN);
-    ezButton _buttonNext = ezButton(BUTTON_NEXT_PIN);
+    ezButton _buttonSelect = ezButton(BUTTON_SELECT_PIN, INPUT_PULLDOWN);
+    ezButton _buttonNext = ezButton(BUTTON_NEXT_PIN, INPUT_PULLDOWN);
 };
 } // namespace Infrastructure::cplus2
 #endif
