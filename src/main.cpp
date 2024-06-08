@@ -1,16 +1,21 @@
 #include "DeviceSelect.h"
-#include "infrastructure/DeviceBase.h"
+#include "entities/DeviceInterfaceBase.h"
 #include <Arduino.h>
 #include <SPI.h>
 #include <TFT_eSPI.h>
 
+using namespace Entities;
+
+DeviceBase *dev;
+
 void setup()
 {
-    Infrastructure::DeviceBase::getInstance()->begin();
+    dev = DeviceBase::getInstance();
+    dev->begin();
 }
 
 void loop()
 {
-    Infrastructure::DeviceBase::getInstance()->loop();
+    dev->loop();
     delay(1000);
 }

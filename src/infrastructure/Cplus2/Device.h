@@ -1,7 +1,9 @@
 #ifdef CPLUS2
 #pragma once
 
-#include "../DeviceBase.h"
+#include "../../entities/DeviceInterfaceBase.h"
+
+using namespace Entities;
 
 namespace Infrastructure::cplus2
 {

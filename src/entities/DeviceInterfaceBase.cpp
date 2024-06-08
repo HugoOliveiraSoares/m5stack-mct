@@ -1,6 +1,6 @@
-#include "DeviceBase.h"
+#include "DeviceInterfaceBase.h"
 
-using namespace Infrastructure;
+using namespace Entities;
 
 DeviceBase *DeviceBase::_instance = nullptr;
 

@@ -3,7 +3,7 @@
 #include <Arduino.h>
 #include <WString.h>
 
-namespace Infrastructure
+namespace Entities
 {
 class DeviceBase
 {
@@ -19,4 +19,4 @@ class DeviceBase
   private:
     static DeviceBase *_instance;
 };
-} // namespace Infrastructure
+} // namespace Entities

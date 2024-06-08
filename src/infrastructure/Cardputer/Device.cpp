@@ -14,11 +14,11 @@ String Device::getName()
 
 void Device::begin()
 {
-    Infrastructure::DeviceBase::begin();
+    DeviceBase::begin();
 }
 
 void Device::loop()
 {
-    Infrastructure::DeviceBase::loop();
+    DeviceBase::loop();
 }
 #endif

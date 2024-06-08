@@ -1,7 +1,9 @@
 #ifdef CARDPUTER
 #pragma once
 
-#include "../DeviceBase.h"
+#include "../../entities/DeviceInterfaceBase.h"
+
+using namespace Entities;
 
 namespace Infrastructure::cardputer
 {
