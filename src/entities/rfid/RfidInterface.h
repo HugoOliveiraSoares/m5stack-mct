@@ -8,7 +8,9 @@ namespace Entities::RFID
 class RfidModuleInterface
 {
   public:
-    RfidModuleInterface();
+    RfidModuleInterface()
+    {
+    }
     virtual bool isCardPresent() = 0;
     virtual bool authenticate(uint8_t reg, uint8_t key, uint8_t uid) = 0;
     virtual uint8_t dumpMemory(uint8_t uid) = 0;
