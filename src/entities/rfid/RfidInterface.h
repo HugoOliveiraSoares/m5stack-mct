@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Wire.h"
-#include <stdint.h>
+#include <cstdint>
 
 namespace Entities::RFID
 {
@@ -9,11 +9,13 @@ class RfidModuleInterface
 {
   public:
     RfidModuleInterface();
-    virtual void dumpMemory(byte uid);
-    virtual void readSector(byte reg) = 0;
-    virtual void readRegister(byte reg) = 0;
-    virtual void writeRegister(byte reg, byte value) = 0;
-    virtual void setUid(byte *newUid);
+    virtual bool isCardPresent() = 0;
+    virtual bool authenticate(uint8_t reg, uint8_t key, uint8_t uid) = 0;
+    virtual uint8_t dumpMemory(uint8_t uid) = 0;
+    virtual uint8_t readSector(uint8_t reg) = 0;
+    virtual uint8_t readRegister(uint8_t reg) = 0;
+    virtual bool writeRegister(uint8_t reg, uint8_t value) = 0;
+    virtual bool setUid(uint8_t *newUid) = 0;
 
   private:
 };
