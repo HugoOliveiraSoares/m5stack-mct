@@ -14,7 +14,7 @@ class Mfrc522Reader : public RfidModuleInterface
     bool isCardPresent();
     bool authenticate(uint8_t reg, uint8_t *key, uint8_t *uid);
     uint8_t dumpMemory(uint8_t *uid);
-    uint8_t *readSector(uint8_t reg);
+    uint8_t *readSector(uint8_t sec);
     uint8_t *readRegister(uint8_t reg);
     bool writeRegister(uint8_t reg, uint8_t *value, uint8_t valueSize);
     bool setUid(uint8_t *newUid);

@@ -1,5 +1,7 @@
 #include "Mfrc522Reader.h"
 #include <cstdint>
+#include <cstdlib>
+#include <cstring>
 
 using namespace Entities::RFID;
 
@@ -29,17 +31,43 @@ bool Mfrc522Reader::authenticate(uint8_t reg, uint8_t *key, uint8_t *uid)
     {
         Serial.print(F("Authentication failed: "));
         Serial.println(this->_mfrc522->GetStatusCodeName(status));
-        return 0;
+        return false;
     }
-    return 1;
+    return true;
 }
 
 uint8_t Mfrc522Reader::dumpMemory(uint8_t *uid)
 {
 }
 
-uint8_t *Mfrc522Reader::readSector(uint8_t reg)
+uint8_t *Mfrc522Reader::readSector(uint8_t sec)
 {
+    uint8_t reg = sec * 4;
+    uint8_t *buffer = (uint8_t *)malloc(64);
+    uint8_t *regData;
+
+    if (buffer == nullptr)
+    {
+        Serial.print("Error to alloc buffer");
+        return nullptr;
+    }
+
+    for (uint8_t i = 0; i < 4; i++)
+    {
+        regData = this->readRegister(reg + i);
+        if (regData == nullptr)
+        {
+            Serial.print("Reading register failed: ");
+            Serial.println(i);
+            return nullptr;
+        }
+        else
+        {
+            memcpy(buffer + (i * 16), regData, 16);
+        }
+    }
+
+    return buffer;
 }
 
 uint8_t *Mfrc522Reader::readRegister(uint8_t reg)
