@@ -13,7 +13,7 @@ class RfidModuleInterface
     }
     virtual bool isCardPresent() = 0;
     virtual bool authenticate(uint8_t reg, uint8_t *key, uint8_t *uid) = 0;
-    virtual uint8_t dumpMemory(uint8_t *uid) = 0;
+    virtual uint8_t *dumpMemory(uint8_t *uid, uint8_t *key) = 0;
     virtual uint8_t *readSector(uint8_t sec) = 0;
     virtual uint8_t *readRegister(uint8_t reg) = 0;
     virtual bool writeRegister(uint8_t reg, uint8_t *value, uint8_t valueSize) = 0;
