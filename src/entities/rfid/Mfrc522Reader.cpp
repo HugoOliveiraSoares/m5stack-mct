@@ -130,10 +130,19 @@ uint8_t *Mfrc522Reader::readRegister(uint8_t reg)
 
 bool Mfrc522Reader::writeRegister(uint8_t reg, uint8_t *value, uint8_t valueSize)
 {
+    uint8_t status = this->_mfrc522->MIFARE_Write(reg, value, valueSize);
+    if (status != MFRC522_I2C::STATUS_OK)
+    {
+        Serial.print(F("MIFARE_Write() failed: "));
+        Serial.println(this->_mfrc522->GetStatusCodeName(status));
+        return false;
+    }
+    return true;
 }
 
 bool Mfrc522Reader::setUid(uint8_t *newUid)
 {
+    return this->_mfrc522->MIFARE_SetUid(newUid, (uint8_t)4, true);
 }
 
 uint8_t *Mfrc522Reader::getUid()
