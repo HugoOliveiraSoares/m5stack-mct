@@ -24,7 +24,7 @@ bool Mfrc522Reader::authenticate(uint8_t reg, uint8_t *key, uint8_t *uid)
         _key.keyByte[i] = *(key + i);
     }
 
-    Serial.println("authenticate:: Autenticando o registrador " + String(reg));
+    // Serial.println("authenticate:: Autenticando o registrador " + String(reg));
 
     uint8_t status =
         this->_mfrc522->PCD_Authenticate(MFRC522_I2C::PICC_CMD_MF_AUTH_KEY_A, reg, &_key, &(this->_mfrc522->uid));
@@ -36,7 +36,7 @@ bool Mfrc522Reader::authenticate(uint8_t reg, uint8_t *key, uint8_t *uid)
         return false;
     }
 
-    Serial.println("authenticate:: Registrador " + String(reg) + " autenticado!");
+    // Serial.println("authenticate:: Registrador " + String(reg) + " autenticado!");
     return true;
 }
 
@@ -50,7 +50,7 @@ uint8_t *Mfrc522Reader::dumpMemory(uint8_t *uid, uint8_t *key)
         return nullptr;
     }
 
-    Serial.println("dumpMemory:: Lendo a memoria!");
+    // Serial.println("dumpMemory:: Lendo a memoria!");
 
     for (uint8_t i = 0; i < 16; i++)
     {
@@ -73,7 +73,7 @@ uint8_t *Mfrc522Reader::dumpMemory(uint8_t *uid, uint8_t *key)
         }
     }
 
-    Serial.println("dumpMemory:: memoria lida!");
+    // Serial.println("dumpMemory:: memoria lida!");
     return buffer;
 }
 
@@ -89,7 +89,7 @@ uint8_t *Mfrc522Reader::readSector(uint8_t sec)
         return nullptr;
     }
 
-    Serial.println("readSector:: Lendo o setor " + String(sec));
+    // Serial.println("readSector:: Lendo o setor " + String(sec));
 
     for (uint8_t i = 0; i < 4; i++)
     {
@@ -105,7 +105,7 @@ uint8_t *Mfrc522Reader::readSector(uint8_t sec)
         }
     }
 
-    Serial.println("readSector:: Setor " + String(sec) + " lido!");
+    // Serial.println("readSector:: Setor " + String(sec) + " lido!");
     return buffer;
 }
 
@@ -114,7 +114,7 @@ uint8_t *Mfrc522Reader::readRegister(uint8_t reg)
     uint8_t len = 18;
     static uint8_t buffer[18];
 
-    Serial.println("readRegister:: Lendo o registrador " + String(reg));
+    // Serial.println("readRegister:: Lendo o registrador " + String(reg));
     uint8_t status = this->_mfrc522->MIFARE_Read(reg, buffer, &len);
 
     if (status != MFRC522_I2C::STATUS_OK)
@@ -124,7 +124,7 @@ uint8_t *Mfrc522Reader::readRegister(uint8_t reg)
         return nullptr;
     }
 
-    Serial.println("readRegister:: Registrador " + String(reg) + " lido!");
+    // Serial.println("readRegister:: Registrador " + String(reg) + " lido!");
     return buffer;
 }
 
