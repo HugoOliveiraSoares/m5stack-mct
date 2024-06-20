@@ -19,7 +19,7 @@ class Mfrc522Reader : public RfidModuleInterface
     bool writeRegister(uint8_t reg, uint8_t *value, uint8_t valueSize);
     bool setUid(uint8_t *newUid);
     uint8_t *getUid();
-    void stop();
+    void halt();
 
   private:
     MFRC522_I2C *_mfrc522;

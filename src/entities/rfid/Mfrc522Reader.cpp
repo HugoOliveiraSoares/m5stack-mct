@@ -150,7 +150,7 @@ uint8_t *Mfrc522Reader::getUid()
     return this->_mfrc522->uid.uidByte;
 }
 
-void Mfrc522Reader::stop()
+void Mfrc522Reader::halt()
 {
     this->_mfrc522->PICC_HaltA();
     this->_mfrc522->PCD_StopCrypto1();
