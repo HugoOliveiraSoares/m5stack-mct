@@ -4,6 +4,7 @@
 
 #include "PN532.h"
 #include "PN532_I2C.h"
+#include <cstdint>
 
 namespace Entities::RFID
 {
@@ -24,6 +25,8 @@ class PN532Reader : public RfidModuleInterface
   private:
     PN532_I2C *_pn532i2c;
     PN532 *_nfc;
+    uint8_t _uid[7];
+    uint8_t _uidLength;
 };
 
 } // namespace Entities::RFID
