@@ -48,7 +48,7 @@ uint8_t *PN532Reader::readRegister(uint8_t reg)
 
 bool PN532Reader::writeRegister(uint8_t reg, uint8_t *value, uint8_t valueSize)
 {
-    return false;
+    return this->_nfc->mifareclassic_WriteDataBlock(reg, value);
 }
 
 bool PN532Reader::setUid(uint8_t *newUid)
