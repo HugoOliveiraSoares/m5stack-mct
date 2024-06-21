@@ -41,7 +41,9 @@ uint8_t *PN532Reader::readSector(uint8_t sec)
 
 uint8_t *PN532Reader::readRegister(uint8_t reg)
 {
-    return nullptr;
+    uint8_t *buffer = new uint8_t[16];
+    this->_nfc->mifareclassic_ReadDataBlock(reg, buffer);
+    return buffer;
 }
 
 bool PN532Reader::writeRegister(uint8_t reg, uint8_t *value, uint8_t valueSize)
