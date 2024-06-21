@@ -36,7 +36,26 @@ uint8_t *PN532Reader::dumpMemory(uint8_t *uid, uint8_t *key)
 
 uint8_t *PN532Reader::readSector(uint8_t sec)
 {
-    return nullptr;
+    uint8_t reg = sec * 4;
+    uint8_t *buffer = new uint8_t[64];
+    uint8_t *regData;
+
+    for (int i = 0; i < 4; i++)
+    {
+        regData = this->readRegister(reg + i);
+        if (regData == nullptr)
+        {
+            delete[] buffer;
+            return nullptr;
+        }
+        else
+        {
+            memcpy(buffer + i * 16, regData, 16);
+            delete[] regData;
+        }
+    }
+
+    return buffer;
 }
 
 uint8_t *PN532Reader::readRegister(uint8_t reg)
