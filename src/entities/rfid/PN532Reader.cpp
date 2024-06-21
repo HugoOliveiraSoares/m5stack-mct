@@ -1,5 +1,6 @@
 #include "PN532Reader.h"
 #include <cstdint>
+#include <cstring>
 #include <stdexcept>
 
 using namespace Entities::RFID;
@@ -31,7 +32,28 @@ bool PN532Reader::authenticate(uint8_t reg, uint8_t *key, uint8_t *uid)
 
 uint8_t *PN532Reader::dumpMemory(uint8_t *uid, uint8_t *key)
 {
-    return nullptr;
+    uint8_t *buffer = new uint8_t[1024];
+    uint8_t *sectorData;
+
+    for (int i = 0; i < 16; i++)
+    {
+        if (!this->authenticate(i * 4, key, uid))
+        {
+            delete[] buffer;
+            return nullptr;
+        }
+        sectorData = this->readSector(i);
+        if (sectorData == nullptr)
+        {
+            delete[] buffer;
+            return nullptr;
+        }
+
+        memcpy(buffer + i * 64, sectorData, 64);
+        delete[] sectorData;
+    }
+
+    return buffer;
 }
 
 uint8_t *PN532Reader::readSector(uint8_t sec)
