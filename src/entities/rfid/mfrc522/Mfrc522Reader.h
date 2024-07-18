@@ -1,7 +1,7 @@
 #pragma once
 
 #include "MFRC522_I2C.h"
-#include "RfidInterface.h"
+#include "../RfidInterface.h"
 #include <WString.h>
 #include <cstdint>
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RfidInterface.h"
+#include "../RfidInterface.h"
 
 #include "PN532.h"
 #include "PN532_I2C.h"
