@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ButtonInterfaceBase.h"
 #include <Arduino.h>
 #include <WString.h>
 
@@ -9,6 +10,7 @@ class DeviceBase
 {
   public:
     DeviceBase();
+    DeviceBase(ButtonInterfaceBase *buttonInterface);
 
     static DeviceBase *getInstance();
 
@@ -18,5 +20,6 @@ class DeviceBase
 
   private:
     static DeviceBase *_instance;
+    ButtonInterfaceBase *_buttonInterface;
 };
 } // namespace Entities
