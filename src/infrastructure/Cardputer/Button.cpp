@@ -9,7 +9,6 @@ Button::Button() : ButtonInterfaceBase()
 
 void Button::begin()
 {
-    this->_buttonSelect.setDebounceTime(DEBOUNCE_MS);
     this->_keyboard.begin();
 }
 
@@ -17,8 +16,6 @@ void Button::loop()
 {
     this->_keyboard.updateKeyList();
     this->_keyboard.updateKeysState();
-
-    this->_buttonSelect.loop();
 }
 
 bool Button::isClickNext()
@@ -33,7 +30,12 @@ bool Button::isClickPrevious()
 
 bool Button::isClickSelect()
 {
-    return this->_keyboard.isKeyPressed(KEY_ENTER) || this->_buttonSelect.isPressed();
+    return this->_keyboard.isKeyPressed(KEY_ENTER);
+}
+
+bool Button::isChange()
+{
+    return this->_keyboard.isChange();
 }
 
 #endif

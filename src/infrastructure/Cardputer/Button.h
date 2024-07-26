@@ -3,11 +3,8 @@
 
 #include "../../entities/ButtonInterfaceBase.h"
 #include "utils/Keyboard.h"
-#include <ezButton.h>
 
 using namespace Entities;
-
-#define BUTTON_SELECT_PIN 0
 
 namespace Infrastructure::cardputer
 {
@@ -20,9 +17,9 @@ class Button : public ButtonInterfaceBase
     bool isClickNext();
     bool isClickPrevious();
     bool isClickSelect();
+    bool isChange();
 
   private:
-    ezButton _buttonSelect = ezButton(BUTTON_SELECT_PIN);
     Keyboard_Class _keyboard = Keyboard_Class();
 };
 } // namespace Infrastructure::cardputer

@@ -24,22 +24,25 @@ void DeviceBase::begin()
 
 void DeviceBase::loop()
 {
-    Serial.println(this->getName());
+    // Serial.println(this->getName());
     this->_buttonInterface->loop();
 
-    if (this->_buttonInterface->isClickNext())
+    if (this->_buttonInterface->isChange())
     {
-        Serial.println("next");
-    }
+        if (this->_buttonInterface->isClickNext())
+        {
+            Serial.println("next");
+        }
 
-    if (this->_buttonInterface->isClickPrevious())
-    {
-        Serial.println("previous");
-    }
+        if (this->_buttonInterface->isClickPrevious())
+        {
+            Serial.println("previous");
+        }
 
-    if (this->_buttonInterface->isClickSelect())
-    {
-        Serial.println("select");
+        if (this->_buttonInterface->isClickSelect())
+        {
+            Serial.println("select");
+        }
     }
 }
 
