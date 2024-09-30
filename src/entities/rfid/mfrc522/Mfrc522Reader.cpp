@@ -14,6 +14,8 @@ Mfrc522Reader::Mfrc522Reader()
 bool Mfrc522Reader::isCardPresent()
 {
     return !(!this->_mfrc522->PICC_IsNewCardPresent() || !this->_mfrc522->PICC_ReadCardSerial());
+  return (!this->_mfrc522->PICC_IsNewCardPresent() ||
+          !this->_mfrc522->PICC_ReadCardSerial());
 }
 
 bool Mfrc522Reader::authenticate(uint8_t reg, uint8_t *key, uint8_t *uid)
