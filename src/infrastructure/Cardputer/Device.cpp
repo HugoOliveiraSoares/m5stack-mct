@@ -3,7 +3,7 @@
 
 using namespace Infrastructure::cardputer;
 
-Device::Device() : DeviceBase()
+Device::Device() : DeviceBase(new Infrastructure::cardputer::Button())
 {
 }
 

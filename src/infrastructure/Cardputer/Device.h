@@ -2,6 +2,7 @@
 #pragma once
 
 #include "../../entities/DeviceInterfaceBase.h"
+#include "Button.h"
 
 using namespace Entities;
 
