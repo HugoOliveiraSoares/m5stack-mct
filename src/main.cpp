@@ -8,14 +8,12 @@ using namespace Entities;
 
 DeviceBase *dev;
 
-void setup()
-{
-    dev = DeviceBase::getInstance();
-    dev->begin();
+void setup() {
+  dev = DeviceBase::getInstance();
+  dev->begin();
 }
 
-void loop()
-{
-    dev->loop();
-    delay(100);
+void loop() {
+  dev->loop();
+  // delay(100);
 }
