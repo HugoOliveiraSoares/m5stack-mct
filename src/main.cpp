@@ -17,5 +17,5 @@ void setup()
 void loop()
 {
     dev->loop();
-    delay(1000);
+    delay(100);
 }
